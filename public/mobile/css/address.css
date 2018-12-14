@@ -1,0 +1,50 @@
+.header{
+    height: 44px;
+    background-color: #006699;
+
+}
+.header .arrowLeft {
+    line-height: 44px;
+}
+.header .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 44px;
+    color: #fff;
+    font-size: 18px;
+    font-family: 微软雅黑;
+}
+
+/*address list page's css*/
+.addressBody {
+    margin-top: 44px;
+}
+.addressBody .addAddr{
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+.addressBody .addAddr a{
+    color: black;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+}
+.mui-content > .mui-table-view:first-child {
+    margin-top: 0px;
+}
+.mui-table-view-cell > .mui-slider-handle.mui-navigate-right:after, .mui-table-view-cell > .mui-slider-handle .mui-navigate-right:after {
+    right: -45px;
+}
+
+/*address list edit css*/
+.addressEditBody{
+    margin-top: 50px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.addressEditBody .btn_submit{
+    width: 100%;
+}

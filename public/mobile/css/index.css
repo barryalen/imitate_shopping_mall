@@ -1,0 +1,94 @@
+.homeBody{
+    margin-bottom: 50px;
+    margin-top: 44px;
+}
+.mui-bar{
+    touch-action: none;
+}
+/*home page header part*/
+.header{
+    height: 44px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #006699;
+}
+.header .search{
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    line-height: 44px;
+    margin-left: 5px;
+    padding: 0 5px;
+}
+.header input{
+    height: 30px;
+    border-radius:30px;
+    background: url("../images/search.jpg") no-repeat 8px center #fff;
+}
+.header .login{
+    display: inline-block;
+    width: 50px;
+    line-height: 44px;
+    text-align: center;
+}
+.header a{
+    color: #fff;
+}
+
+
+/*home page product show*/
+.productShow{
+    padding: 5px 3px 0 3px;
+}
+.productShow .titlePic{
+    padding: 0 5px;
+}
+
+/*home page first grid*/
+#grid ul.mui-table-view{
+    margin-top: 0px;
+}
+#grid li.mui-table-view-cell{
+    padding: 0px;
+}
+#grid ul li a{
+    padding: 0px;
+}
+#grid img{
+    height: 100%;
+    width: 100%;
+}
+
+/*home page pinpai part*/
+.pinpai{
+    padding-top: 5px;
+}
+.pinpai h3{
+    height: 50px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    line-height: 50px;
+    margin: 0 10px;
+}
+
+/*home page sport part*/
+.sport h3{
+    height: 50px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    line-height: 50px;
+    margin: 0 10px;
+}
+.sport p{
+    margin-top: 10px;
+}
+#grid .price .newPrice{
+    color:red;
+}
+#grid .price .oldPrice{
+    text-decoration: line-through;
+}

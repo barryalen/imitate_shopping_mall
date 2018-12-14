@@ -1,0 +1,67 @@
+/*search page header part*/
+.header{
+    height: 44px;
+    background-color: #006699;
+
+}
+.header .arrowLeft {
+    line-height: 44px;
+}
+.header .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 44px;
+    color: #fff;
+    font-size: 18px;
+    font-family: 微软雅黑;
+}
+
+/*body part*/
+.searchBody {
+    margin-top: 44px;
+    margin-bottom: 50px;
+}
+.searchBody .search{
+    height: 44px;
+    display: flex;
+    flex-direction: row;
+    margin: 50px 10px 10px;
+}
+.searchBody .search button {
+    height: 40px;
+    width: 65px;
+}
+.searchBody .search input{
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    background: url("../images/search.jpg") no-repeat 8px center #fff;
+    padding-left: 30px;
+}
+.searchBody .searchResult{
+    margin: 0 10px;
+}
+.something{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+p span{
+    font-size: 18px;
+    font-weight: 200;
+    color:#000;
+}
+.searchBody .searchResult .hide{
+    display: none;
+}
+.searchBody .searchResult ul,li{
+    margin: 0;
+    padding: 0;
+}
+.searchBody .searchResult li {
+    float: left;
+    list-style: none;
+    padding: 5px 10px;
+}
+

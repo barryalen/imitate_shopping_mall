@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>收货地址管理</title>
+    <link type="image/x-icon" rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../assets/mui/css/mui.css">
+    <link rel="stylesheet" href="../assets/mui/css/mui.picker.css">
+    <link rel="stylesheet" href="../assets/mui/css/mui.poppicker.css">
+    <link rel="stylesheet" href="../css/address.css">
+    <link rel="stylesheet" href="../assets/myFont/arrowLeft/iconfont.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav header">
+    <a href="javascript:history.back()" class="arrowLeft"><i class="iconfont icon-arrow-left"></i></a>
+    <span class="title"> 收货地址管理</span>
+</header>
+<div class="addressEditBody">
+        <form class="form_box">
+            <div class="mui-input-row">
+                <input name="recipients" type="text" placeholder="收货人">
+            </div>
+            <div class="mui-input-row">
+                <input name="postcode" type="text" placeholder="邮编">
+            </div>
+            <div class="mui-input-row">
+                <input name="address" type="text" readonly placeholder="省市区">
+            </div>
+            <div class="mui-input-row">
+                <textarea name="addressDetail" id="textarea" rows="5" placeholder="详细地址"></textarea>
+            </div>
+            <a href="javascript:;" class="mui-btn mui-btn-primary btn_submit">确认</a>
+        </form>
+</div>
+<script src="../assets/zepto/zepto.min.js"></script>
+<script src="../assets/mui/js/mui.js"></script>
+<script src="../assets/mui/js/mui.picker.js"></script>
+<script src="../assets/mui/js/mui.poppicker.js"></script>
+<script src="../assets/mui/js/city.data-3.js"></script>
+<script src="../js/comment.js"></script>
+<script>
+$(function () {
+// city选择
+    $('.addressEditBody input[name="address"]').on('tap', function () {
+        var _this = this
+        var cityPicker = new mui.PopPicker({layer:3});
+        cityPicker.setData(cityData3);
+        cityPicker.show(function (selectItems) {
+            var value = selectItems[0].text + ' ' + selectItems[1].text + ' ' + selectItems[2].text
+            $(_this).val(value)
+        })
+    })
+    if(location.search) {
+        // update address
+        console.log(1);
+        var addrId = location.search.split('=')[1]
+        $.ajax({
+            url:'/address/queryAddress',
+            type:'get',
+            success: function (data) {
+                console.log(data);
+                var addrEditDeail = data.filter(item => {
+                    return item.id === parseInt(addrId) ? item : null
+                })[0]
+                var ele = $('form')
+                ele.find('input[name="recipients"]').val(addrEditDeail.recipients)
+                ele.find('input[name="postcode"]').val(addrEditDeail.postCode)
+                ele.find('input[name="address"]').val(addrEditDeail.address)
+                ele.find('textarea[name="addressDetail"]').val(addrEditDeail.addressDetail)
+            }
+        })
+        $('.addressEditBody .btn_submit').on('tap', function () {
+            var params = valueConform()
+            params.id = addrId
+            console.log(params);
+            pubObj.isLogin({
+                url:'/address/updateAddress',
+                type:'post',
+                data:params,
+                success: function (data) {
+                    console.log(data);
+                    if(data.success) {
+                        location.href = 'address.html'
+                    }
+                }
+            })
+        })
+
+        return false
+    }
+
+    //add address
+    $('.addressEditBody .btn_submit').on('tap', function () {
+       var params = valueConform()
+        console.log(params);
+        pubObj.isLogin({
+            url:'/address/addAddress',
+            type:'post',
+            data:params,
+            success: function (data) {
+                console.log(data);
+                if(data.success) {
+                    location.href = 'address.html'
+                }
+            }
+        })
+    })
+    function valueConform() {
+        var params = pubObj.formDataToJson($('form').serialize())
+
+
+        if (!params.recipients.trim()){
+            mui.toast('请输入收件人')
+            return false
+        }
+
+        if (!params.postcode.trim()){
+            mui.toast('请输入邮编')
+            return false
+        }
+
+        if (!params.address.trim()){
+            mui.toast('请输入地址')
+            return false
+        }
+
+        if (!params.address.trim()){
+            mui.toast('请输入详细地址')
+            return false
+        }
+        //中文处理
+        for (var k in params) {
+            params[k] = decodeURI(params[k])
+        }
+        console.log(params);
+        return params
+    }
+
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>jdcopy</title>
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="assets/mui/css/mui.css">
+    <link rel="stylesheet" href="css/searchDetail.css">
+    <link rel="stylesheet" type="text/css" href="assets/myFont/arrowLeft/iconfont.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav header">
+    <a href="javascript:history.back()" class="arrowLeft"><i class="iconfont icon-arrow-left"></i></a>
+    <span class="title">搜索中心</span>
+</header>
+<div class="showRefresh mui-content">
+    <div class="searchDetailBody mui-scroll-wrapper" id="dataFlag">
+        <div class="mui-scroll">
+            <div class="search">
+                <input type="text" title="search">
+                <button type="button" class="mui-btn mui-btn-primary">搜索</button>
+            </div>
+            <div class="sort">
+                <ul>
+                    <li class="active" data-title="total">
+                        <a href="javascript:;">综合<span class="mui-icon mui-icon-arrowdown"></span>
+                        </a></li>
+                    <li data-title="price"><a href="javascript:;">价格<span class="mui-icon mui-icon-arrowdown"></span>
+                    </a></li>
+                    <li data-title="num"><a href="javascript:;">销量<span class="mui-icon mui-icon-arrowdown"></span>
+                    </a></li>
+                    <li data-title="percent"><a href="javascript:;">折扣<span class="mui-icon mui-icon-arrowdown"></span>
+                    </a></li>
+                </ul>
+            </div>
+            <div class="searchDetail" id="detail">
+                <ul class="mui-table-view mui-grid-view mui-grid-9" >
+                    <!--查询商品结果-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/zepto/zepto.min.js"></script>
+<script src="assets/mui/js/mui.js"></script>
+<script src="assets/artTemplate/template-web.js"></script>
+<script id="searchDetailList" type="text/html">
+{{each data}}
+<li class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-6" data-productId="{{$value.id}}">
+
+        <div class="mui-card">
+            <div class="mui-card-header mui-card-media" style="height:40vw;background-image:url(images/product.jpg)"></div>
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <p class="mui-ellipsis-2 content">{{$value.proName}}</p>
+                    <p class="price"><span class="newPrice" style="color: red;">￥{{$value.price}}</span> <span class="oldPrice" ><del>￥{{$value.oldPrice}}</del></span></p>
+                    <p><button type="button" class="mui-btn mui-btn-primary">立即购买</button></p>
+                </div>
+            </div>
+        </div>
+
+</li>
+{{/each}}
+</script>
+<script src="js/comment.js"></script>
+<script src="js/searchDetail.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>search jdcopy</title>
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="assets/mui/css/mui.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" type="text/css" href="assets/myFont/arrowLeft/iconfont.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav header">
+    <a href="javascript:history.back()" class="arrowLeft"><i class="iconfont icon-arrow-left"></i></a>
+    <span class="title">搜索中心</span>
+</header>
+<div class="searchBody">
+    <div class="search">
+        <input type="text" title="search">
+        <button type="button" class="mui-btn mui-btn-primary">搜索</button>
+    </div>
+    <div class="searchResult">
+        <p class="nothing"><span>没有历史搜索记录</span></p>
+        <p class="something hide">
+            <span>最近搜索记录</span>
+            <span class="mui-icon mui-icon-trash deleteHis"></span>
+        </p>
+        <ul></ul>
+    </div>
+</div>
+<nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item" href="index.html">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+    <a class="mui-tab-item  mui-active" href="category.html">
+        <span class="mui-icon mui-icon-bars"></span>
+        <span class="mui-tab-label">分类</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-contact">
+        <span class="mui-icon mui-icon-contact">
+            <span class="mui-badge">9</span>
+        </span>
+        <span class="mui-tab-label">购物车</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-map">
+        <span class="mui-icon mui-icon-gear"></span>
+        <span class="mui-tab-label">会员中心</span>
+    </a>
+</nav>
+<script src="assets/zepto/zepto.min.js"></script>
+<script src="assets/mui/js/mui.js"></script>
+<script src="js/comment.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+.header{
+    height: 44px;
+    background-color: #006699;
+
+}
+.header .arrowLeft {
+    line-height: 44px;
+}
+.header .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 44px;
+    color: #fff;
+    font-size: 18px;
+    font-family: 微软雅黑;
+}
+
+.cartBody {
+    margin-top: 44px;
+    margin-bottom: 80px;
+}
+.priceCount{
+    position: fixed;
+    height: 30px;
+    width: 100%;
+    bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    background-color: #fff;
+}
+.priceCount p{
+    margin: 0 10px;
+    padding: 0;
+}
+.priceCount a{
+    display: block;
+    height: 30px;
+    width: 100px;
+    background-color: #ff3300;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+}
+.priceCount p span{
+    line-height: 30px;
+    color:red;
+}
+.posiLeft{
+    position: relative;
+}
+.checkBox {
+    position: absolute;
+    bottom: 4px;
+    z-index: 999;
+}
+.mui-media-body .price{
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.mui-media-body .title{
+    font-size: 16px;
+}
+.mui-table-view-cell > .mui-slider-handle.mui-navigate-right:after, .mui-table-view-cell > .mui-slider-handle .mui-navigate-right:after {
+    right: -20px;
+}
+.mui-table-view .mui-media-object {
+    height: 60px;
+}
+.mui-table-view-chevron .mui-table-view-cell {
+    padding-right: 40px;
+}
+.mui-popup-inner ul,li{
+    margin: 0;
+    padding: 0;
+}
+.mui-popup-inner ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    z-index: 999;
+}
+.mui-popup-inner li{
+    list-style: none;
+    border: 1px solid gray;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    line-height: 24px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+
+}
+.mui-popup-inner .kuCun{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+.selectFlag {
+    background-color: #fa672d;
+}

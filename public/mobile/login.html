@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>jc-欢迎你</title>
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="assets/myFont/arrowLeft/iconfont.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="assets/mui/css/mui.css">
+</head>
+<body>
+<header class="header">
+    <a href="javascript:history.back()" class="arrowLeft"><i class="iconfont icon-arrow-left"></i></a>
+    <span class="title">登录</span>
+</header>
+<div class="loginBody">
+    <form class="mui-input-group" id="loginForm">
+        <div class="mui-input-row">
+            <input name="username" type="text" class="mui-input-clear" placeholder="用户名/邮箱/手机号">
+        </div>
+        <div class="mui-input-row">
+            <input name="password" type="password" class="mui-input-password" placeholder="请输入密码">
+            <span class="mui-icon mui-icon-eye"></span>
+        </div>
+        <div class="mui-button-row">
+            <a id='login'>登录</a>
+        </div>
+        <div class="operatBtn">
+        <a href="register.html" id='reg'>注册账号</a>
+        <span>|</span>
+        <a id='forgetPassword'>忘记密码</a>
+        </div>
+    </form>
+</div>
+<script src="assets/zepto/zepto.min.js"></script>
+<script src="assets/mui/js/mui.js"></script>
+<script src="js/comment.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

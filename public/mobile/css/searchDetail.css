@@ -1,0 +1,80 @@
+/*searchDetail header*/
+.header{
+    height: 44px;
+    background-color: #006699;
+
+}
+.header .arrowLeft {
+    line-height: 44px;
+}
+.header .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 44px;
+    color: #fff;
+    font-size: 18px;
+    font-family: 微软雅黑;
+}
+.showRefresh{
+    top: 44px;
+}
+
+/*search  part*/
+.searchDetailBody .search{
+    height: 44px;
+    display: flex;
+    flex-direction: row;
+    margin: 50px 10px 10px;
+}
+.searchDetailBody .search button {
+    height: 40px;
+    width: 65px;
+}
+.searchDetailBody .search input{
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    background: url("../images/search.jpg") no-repeat 8px center #fff;
+    padding-left: 30px;
+}
+
+.searchDetailBody .sort ul,li{
+    margin: 0;
+    padding: 0;
+}
+.searchDetailBody .sort ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+.searchDetailBody .sort ul li{
+    padding: 0 10px;
+}
+.searchDetailBody .sort ul li.active a{
+    color:red;
+}
+.mui-icon.mui-icon-arrowdown, .mui-icon.mui-icon-arrowup{
+    font-size: 16px;
+}
+.searchDetailBody .sort ul li .hide{
+    display: none;
+}
+/*product detail show*/
+.searchDetailBody .searchDetail{
+    padding-top: 5px;
+}
+#detail ul.mui-table-view{
+    margin-top: 0px;
+}
+#detail li.mui-table-view-cell{
+    padding: 0px;
+}
+#detail ul li a{
+    padding: 0px;
+}
+#tail img{
+    height: 100%;
+    width: 100%;
+}

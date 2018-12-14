@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="assets/zepto/zepto.min.js"></script>
+    <script src="assets/artTemplate/template-web.js"></script>
+</head>
+<body>
+<input type="text" name="" id="" value="12">
+<div id="content"></div>
+
+
+<script id="test" type="text/html">
+<div>
+
+    <span>{{c}}</span>
+    {{set artest = test}}
+    <p>{{artest}}</p>
+    {{each $imports.stringToArray(test)}}
+        <span>{{$value}}</span>
+    {{/each}}
+    <!--{{each arr }}-->
+    <!--<span>{{$value}}</span>-->
+    <!--{{/each}}-->
+    {{person[0]}}
+    {{each person}}
+    {{$value}}
+    {{/each}}
+    {{person[person.length-1]}}
+</div>
+
+</script>
+<script>
+var data = {
+    c:100,
+    test:'sd-33',
+    person:[
+        {name:"jack",age:18,sex:1},
+        {name:"tom",age:19,sex:0},
+        {name:"jerry",age:20,sex:0},
+        {name:"kid",age:21,sex:1},
+        {name:"jade",age:22,sex:0}
+    ]
+};
+//自定义函数
+template.defaults.imports.log = console.log;
+template.defaults.imports.stringToArray = function (data) {
+    var arr = data.split('-')
+    var newArr = []
+    for (var i = 0; i <= arr[1]-arr[0]; i++) {
+        newArr.push(arr[0]+i)
+    }
+    return  newArr
+}
+var html = template("test",data);
+document.getElementById("content").innerHTML = html;
+</script>
+
+</body>
+</html>

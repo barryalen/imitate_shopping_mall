@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>个人注册</title>
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="assets/mui/css/mui.css">
+    <link rel="stylesheet" href="assets/myFont/arrowLeft/iconfont.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav header">
+    <a href="javascript:history.back()" class="arrowLeft"><i class="iconfont icon-arrow-left"></i></a>
+    <span class="title">个人注册</span>
+</header>
+<div class="regBody">
+    <form class="form_box">
+        <div class="mui-input-row">
+            <input name="mobile" type="text" placeholder="手机号">
+        </div>
+        <div class="mui-input-row">
+            <input name="pass" type="password" placeholder="密码" class="mui-input-password">
+            <span class="mui-icon mui-icon-eye"></span>
+        </div>
+        <div class="mui-input-row">
+            <input name="rePass" type="password" placeholder="确认密码" class="mui-input-password">
+            <span class="mui-icon mui-icon-eye"></span>
+        </div>
+        <div class="mui-input-row">
+            <input name="code" type="text" placeholder="认证码">
+            <a href="javascript:;" class="btn_getCode" >获取认证码</a>
+        </div>
+        <a href="javascript:;" class="mui-btn mui-btn-primary btn_register">注册</a>
+        <div class="mui-input-row loginRight">
+            <input type="checkbox" checked/> 我同意《会员服务协议》
+            <a href="login.html">立即登录</a>
+        </div>
+    </form>
+</div>
+<script src="assets/zepto/zepto.min.js"></script>
+<script src="assets/mui/js/mui.js"></script>
+<script src="js/comment.js"></script>
+<script src="js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>收货地址管理</title>
+    <link type="image/x-icon" rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../assets/mui/css/mui.css">
+    <link rel="stylesheet" href="../css/address.css">
+    <link rel="stylesheet" href="../assets/myFont/arrowLeft/iconfont.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav header">
+    <a href="javascript:history.back()" class="arrowLeft"><i class="iconfont icon-arrow-left"></i></a>
+    <span class="title"> 收货地址管理</span>
+</header>
+<div class="addressBody">
+    <div class="addAddr">
+        <a href="addressEdit.html">添加收货地址</a>
+    </div>
+    <div class="listAddr">
+        <div class="mui-content">
+            <ul class="mui-table-view mui-table-view-chevron">
+                <!--列表显示区-->
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="../assets/zepto/zepto.min.js"></script>
+<script src="../assets/mui/js/mui.js"></script>
+<script src="../assets/artTemplate/template-web.js"></script>
+<script id="addrList" type="text/html">
+{{each addr}}
+<li class="mui-table-view-cell mui-media" id="{{$value.id}}">
+    <div class="mui-slider-right mui-disabled">
+        <a class="mui-btn mui-btn-red">删除</a>
+    </div>
+    <div class="mui-slider-handle">
+        <a class="mui-navigate-right">
+            <div class="mui-media-body">
+                <p class='mui-ellipsis'>
+                    <span style="color: black">收货人：</span>
+                    <span style="color: black" class="recipients">{{$value.recipients}}</span></p>
+                <p class='mui-ellipsis'>
+                    <span style="font-size: 12px;">地址：</span>
+                    <span style="font-size: 12px;" class="address">{{$value.address}}</span></p>
+                <p class='mui-ellipsis'>
+                    <span style="font-size: 12px;">地址：</span>
+                    <span style="font-size: 12px;" class="addressDetail">{{$value.addressDetail}}</span></p>
+            </div>
+        </a>
+    </div>
+</li>
+{{/each}}
+</script>
+<script src="../js/comment.js"></script>
+<script>
+    $(function () {
+        pubObj.isLogin({
+            url:'/address/queryAddress',
+            type:'get',
+            success: function (data) {
+                console.log(data);
+                $('.addressBody ul').append(template('addrList', {addr: data}))
+                $('.addressBody').on('tap', '.mui-btn-red', function () {
+                    var ele = $(this).parent().parent()
+                    var addrId = ele.attr('id')
+                    console.log(addrId);
+                    pubObj.isLogin({
+                        url: '/address/deleteAddress',
+                        type: 'post',
+                        data:'id=' + addrId,
+                        success: function (data) {
+                            console.log(data);
+                            ele.remove()
+                        }
+                    })
+                })
+            }
+        })
+        $('.addressBody ').on('tap', '.mui-slider-handle', function () {
+            location.href = 'addressEdit.html' + '?addressId=' + $(this).parent().attr('id')
+        })
+    })
+</script>
+</body>
+</html>

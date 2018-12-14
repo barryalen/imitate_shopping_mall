@@ -1,0 +1,57 @@
+.header{
+    height: 44px;
+    background-color: #006699;
+
+}
+.header .arrowLeft {
+    line-height: 44px;
+}
+.header .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 44px;
+    color: #fff;
+    font-size: 18px;
+    font-family: 微软雅黑;
+}
+
+.regBody{
+    padding: 0 10px;
+    margin-top: 50px;
+}
+
+.mui-input-row input[name='code']{
+    width:180px;
+}
+.btn_getCode:active{
+    color: white;
+}
+.btn_getCode{
+    height: 40px;
+    width: 110px;
+    background-color: #007aff;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    float: right;
+}
+.btn_register {
+    margin: 5px 0 10px 0;
+    width: 100%;
+    border-radius: 5px;
+}
+.loginRight {
+    font-size: 14px;
+}
+.loginRight a{
+    float: right;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+}
+.disable{
+    font-size: 14px;
+    background-color: #999;
+}

@@ -1,0 +1,144 @@
+
+/*Table structure for table `address` */
+
+DROP TABLE IF EXISTS `address`;
+
+CREATE TABLE `address` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `userId` INT(11) DEFAULT NULL,
+  `address` VARCHAR(100) DEFAULT NULL,
+  `addressDetail` VARCHAR(200) DEFAULT NULL,
+  `isDelete` INT(4) DEFAULT NULL,
+  `recipients` VARCHAR(100) DEFAULT NULL,
+  `postCode` VARCHAR(100) DEFAULT NULL,
+  `mobile` VARCHAR(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+/*Data for the table `address` */
+
+INSERT  INTO `address`(`id`,`userId`,`address`,`addressDetail`,`isDelete`,`recipients`,`postCode`,`mobile`) VALUES (1,1,'上海市浦东新区','金科路2727号',1,'小白','111112',NULL);
+
+/*Table structure for table `brand` */
+
+DROP TABLE IF EXISTS `brand`;
+
+CREATE TABLE `brand` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `brandName` VARCHAR(50) DEFAULT NULL,
+  `categoryId` INT(11) DEFAULT NULL,
+  `brandLogo` VARCHAR(200) DEFAULT NULL,
+  `isDelete` INT(4) DEFAULT NULL,
+  `hot` INT(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+/*Data for the table `brand` */
+
+INSERT  INTO `brand`(`id`,`brandName`,`categoryId`,`brandLogo`,`isDelete`,`hot`) VALUES (1,'耐克',1,'/mobile/images/brand1.png',1,1),(2,'阿迪',1,'/mobile/images/brand2.png',1,1),(3,'新百伦',1,'/mobile/images/brand3.png',1,1),(4,'哥伦比亚',1,'/mobile/images/brand4.png',1,0),(5,'匡威',1,'/mobile/images/brand5.png',1,1),(6,'阿萨德1',2,'/mobile/images/brand5.png',1,1),(7,'阿萨德2',2,'/mobile/images/brand5.png',1,1);
+
+/*Table structure for table `cart` */
+
+DROP TABLE IF EXISTS `cart`;
+
+CREATE TABLE `cart` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `userId` INT(11) DEFAULT NULL,
+  `productId` INT(11) DEFAULT NULL,
+  `num` INT(20) DEFAULT NULL,
+  `size` VARCHAR(20) DEFAULT NULL,
+  `isDelete` INT(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+/*Data for the table `cart` */
+
+INSERT  INTO `cart`(`id`,`userId`,`productId`,`num`,`size`,`isDelete`) VALUES (1,1,1,1,'50',1),(2,1,2,2,'45',1),(3,1,3,4,'40',1);
+
+/*Table structure for table `category` */
+
+DROP TABLE IF EXISTS `category`;
+
+CREATE TABLE `category` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `categoryName` VARCHAR(50) DEFAULT NULL,
+  `isDelete` INT(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Data for the table `category` */
+
+INSERT  INTO `category`(`id`,`categoryName`,`isDelete`) VALUES (1,'运动馆',1),(2,'女士馆',1),(3,'男士馆',1),(4,'帆布馆',1),(5,'户外管',1);
+
+/*Table structure for table `employee` */
+
+DROP TABLE IF EXISTS `employee`;
+
+CREATE TABLE `employee` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(50) DEFAULT NULL,
+  `password` VARCHAR(100) DEFAULT NULL,
+  `mobile` CHAR(11) DEFAULT NULL,
+  `authority` INT(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `employee` */
+
+INSERT  INTO `employee`(`id`,`username`,`password`,`mobile`,`authority`) VALUES (1,'root','4QrcOUm6Wau+VuBX8g+IPg==','13111111111',1);
+
+/*Table structure for table `product` */
+
+DROP TABLE IF EXISTS `product`;
+
+CREATE TABLE `product` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `proName` VARCHAR(200) DEFAULT NULL COMMENT '商品名称',
+  `oldPrice` FLOAT DEFAULT NULL COMMENT '商品价格',
+  `price` FLOAT DEFAULT NULL COMMENT '商品折扣价',
+  `proDesc` VARCHAR(500) DEFAULT NULL COMMENT '商品描述',
+  `size` VARCHAR(20) DEFAULT NULL COMMENT '商品尺寸',
+  `statu` INT(4) DEFAULT NULL COMMENT '是否下架',
+  `updateTime` DATETIME DEFAULT NULL COMMENT '上下架时间',
+  `num` INT(20) DEFAULT NULL COMMENT '商品库存',
+  `brandId` INT(11) DEFAULT NULL COMMENT '归属品牌',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+/*Data for the table `product` */
+
+INSERT  INTO `product`(`id`,`proName`,`oldPrice`,`price`,`proDesc`,`size`,`statu`,`updateTime`,`num`,`brandId`) VALUES (1,'匡威三星标1970s converse复刻 142334c 144757c三星标黑色高帮',888.1,499.1,'描述','40-50',1,'2017-01-05 00:28:29',20,1),(2,'李宁闪击篮球鞋驭帅10镭射队尚4男韦德之道空袭中高帮队尚3.5球鞋',888.1,499.1,'描述','35-45',1,'2017-01-05 00:28:29',20,1),(3,'Sport飓风 Nike Kwazi 休闲运动鞋男 844839-002-001-100-400',888.1,499.1,'描述','30-50',1,'2017-01-05 00:28:29',20,1),(4,'指南针运动 NIKE HYPERSHIFT篮球鞋 844392-010-607-164-017现货',888.1,499.1,'描述','40-55',1,'2017-01-05 00:28:29',20,1),(5,'【莹恋】MIZUNO美津浓V1GA159002乒乓球鞋男鞋女鞋室内综合训练鞋',8868.1,4969.1,'描述123123','40-50',1,'2017-01-05 00:48:05',22,2),(6,'【莹恋】MIZUNO美津浓V1GA159002乒乓球鞋男鞋女鞋室内综合训练鞋',342,112,'描述123123','35-56',1,'2017-01-05 00:48:05',44,2);
+
+/*Table structure for table `product_picture` */
+
+DROP TABLE IF EXISTS `product_picture`;
+
+CREATE TABLE `product_picture` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `picName` VARCHAR(40) DEFAULT NULL,
+  `productId` INT(11) DEFAULT NULL,
+  `picAddr` VARCHAR(60) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+/*Data for the table `product_picture` */
+
+INSERT  INTO `product_picture`(`id`,`picName`,`productId`,`picAddr`) VALUES (1,'product.jpg',1,'/mobile/images/product.jpg'),(2,'detail.jpg',2,'/mobile/images/detail.jpg'),(3,'detail.jpg',3,'/mobile/images/detail.jpg'),(4,'/mobile/images/detail.jpg',4,'/mobile/images/detail.jpg'),(5,'/mobile/images/detail.jpg',5,'/mobile/images/detail.jpg'),(6,'/mobile/images/detail.jpg',6,'/mobile/images/detail.jpg'),(7,'/mobile/images/detail.jpg',1,'/mobile/images/detail.jpg');
+
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(50) DEFAULT NULL,
+  `password` VARCHAR(100) DEFAULT NULL,
+  `mobile` CHAR(11) DEFAULT NULL,
+  `isDelete` INT(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+/*Data for the table `user` */
+
+INSERT  INTO `user`(`id`,`username`,`password`,`mobile`,`isDelete`) VALUES (1,'barry','lueSGJZetyySpUndWjMBEg==','13111111111',1);
+

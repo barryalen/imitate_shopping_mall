@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>购物车</title>
+    <link type="image/x-icon" rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../assets/mui/css/mui.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../assets/myFont/arrowLeft/iconfont.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav header">
+    <a href="javascript:history.back()" class="arrowLeft"><i class="iconfont icon-arrow-left"></i></a>
+    <span class="title">购物车</span>
+</header>
+<div class="cartBody">
+    <div class="mui-content">
+        <ul class="mui-table-view mui-table-view-chevron" id="test">
+            <!--列表显示区-->
+        </ul>
+    </div>
+</div>
+<div class="priceCount">
+    <p><span>全选</span> <input type="checkbox" class="selectAll" ></p>
+    <p><span>总价：￥</span><span class="total">0.00</span></p>
+    <a href="javascript:;">生成订单</a>
+</div>
+<nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item mui-active" href="../index.html">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+    <a class="mui-tab-item" href="../category.html">
+        <span class="mui-icon mui-icon-bars"></span>
+        <span class="mui-tab-label">分类</span>
+    </a>
+    <a class="mui-tab-item" href="cart.html">
+        <span class="mui-icon mui-icon-contact">
+            <span class="mui-badge">9</span>
+        </span>
+        <span class="mui-tab-label">购物车</span>
+    </a>
+    <a class="mui-tab-item" href="user.html">
+        <span class="mui-icon mui-icon-gear"></span>
+        <span class="mui-tab-label">会员中心</span>
+    </a>
+</nav>
+<script src="../assets/zepto/zepto.min.js"></script>
+<script src="../assets/mui/js/mui.js"></script>
+<script src="../assets/artTemplate/template-web.js"></script>
+<script id="cartList" type="text/html">
+{{each dataArr}}
+<li class="mui-table-view-cell mui-media" id="{{$value.id}}">
+    <div class="mui-slider-right mui-disabled">
+        <a class="mui-btn mui-btn-blue editCart">编辑</a>
+        <a class="mui-btn mui-btn-red deleteCart">删除</a>
+    </div>
+    <div class="mui-slider-handle">
+        <input type="checkbox" class="checkBox">
+        <div class="content">
+            <a class="mui-navigate-right" href="javascript:;">
+                <div class="posiLeft">
+                    <img class="mui-media-object mui-pull-left" src="{{$value.pic[0].picAddr}}">
+                </div>
+                <div class="mui-media-body">
+                    <p class='mui-ellipsis-2 title'>{{$value.proName}}</p>
+                    <p class="price">
+                        <span>
+                            ￥<span style="color: red;" class="priceNow">{{$value.price}}</span>
+                            <del style="font-size:12px;color: #ccc; margin-left: 5px">￥{{$value.oldPrice}}</del>
+                        </span>
+                        <span>
+                            x<span class="buyCount">{{$value.num}}</span>
+                        </span>
+                    </p>
+                    <p><span>size:</span><span class="buySize">{{$value.size}}</span></p>
+                </div>
+            </a>
+        </div>
+    </div>
+</li>
+{{/each}}
+</script>
+<script id="edit" type="text/html">
+<div class="size">
+    <ul>尺码：{{each $imports.stringToArray(productSize)}}
+            {{if $value == size}}
+            <li class="selectFlag">{{$value}}</li>
+            {{else}}
+            <li>{{$value}}</li>
+            {{/if}}
+        {{/each}}
+    </ul>
+</div>
+<div class="kuCun">
+    <div>数量：</div>
+    <div class="mui-numbox" data-numbox-min='0'>
+        <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+        <input class="mui-input-numbox" type="number" value="0" />
+        <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+    </div>
+</div>
+</script>
+<script src="../js/comment.js"></script>
+<script src="../js/cart.js"></script>
+</body>
+</html>

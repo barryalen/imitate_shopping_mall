@@ -1,0 +1,30 @@
+.header{
+    height: 44px;
+    background-color: #006699;
+
+}
+.header .arrowLeft {
+    line-height: 44px;
+}
+.header .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 44px;
+    color: #fff;
+    font-size: 18px;
+    font-family: 微软雅黑;
+}
+
+.userBody{
+    margin-top: 44px;
+    margin-bottom: 50px;
+}
+
+.out_login{
+    margin-top: 15px;
+    text-align: center;
+}
+.out_login a{
+    width: 80%;
+}

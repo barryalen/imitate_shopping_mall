@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="readme" class="readme blob instapaper_body">
+    <article class="markdown-body entry-content" itemprop="text"><h1><a id="user-content-商城前台接口汇总" class="anchor" aria-hidden="true" href="#商城前台接口汇总"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>商城前台接口汇总</h1>
+        <p>###用户模块</p>
+        <ul>
+            <li>
+                <p><a href="#register">注册接口</a></p>
+            </li>
+            <li>
+                <p><a href="#login">登录接口</a></p>
+            </li>
+            <li>
+                <p><a href="#logout">登出接口</a></p>
+            </li>
+            <li>
+                <p><a href="#update-password">修改密码</a></p>
+            </li>
+            <li>
+                <p><a href="#query-user-message">查询个人信息</a></p>
+            </li>
+            <li>
+                <p><a href="#v-code">注册验证码接口</a></p>
+            </li>
+            <li>
+                <p><a href="#v-code-for-update-password">修改密码验证码接口</a>
+                    ###产品模块</p>
+            </li>
+            <li>
+                <p><a href="#query-product">搜索产品</a>  排序 价格、图片、名称</p>
+            </li>
+            <li>
+                <p><a href="#query-product-detail">产品详情</a></p>
+            </li>
+        </ul>
+        <p>###分类模块</p>
+        <ul>
+            <li><a href="#query-top-category">一级分类查询</a></li>
+            <li><a href="#query-second-category">二级分类查询</a></li>
+            <li><a href="#query-hot-second-category">火热的二级分类查询</a></li>
+        </ul>
+        <p>###购物车</p>
+        <ul>
+            <li>
+                <p><a href="#add-cart">添加</a>  件、尺码   尺码 string 区间 ？</p>
+            </li>
+            <li>
+                <p><a href="#update-cart">修改</a> 件、尺码</p>
+            </li>
+            <li>
+                <p><a href="#delete-cart">删除</a> 单删、全删</p>
+            </li>
+            <li>
+                <p><a href="#query-cart">查询</a> 带产品信息</p>
+            </li>
+            <li>
+                <p><a href="#query-cart-paging">查询带分页</a> 带产品信息
+                    ###收货地址模块  三级联动  要一个树状对象</p>
+            </li>
+            <li>
+                <p><a href="#add-address">添加</a></p>
+            </li>
+            <li>
+                <p><a href="#update-address">修改</a></p>
+            </li>
+            <li>
+                <p><a href="#delete-address">删除</a></p>
+            </li>
+            <li>
+                <p><a href="#query-address">查询</a></p>
+            </li>
+            <li>
+                <p><a href="#query-address-tree">查询</a></p>
+            </li>
+        </ul>
+        <p>#网站前台接口描述信息</p>
+        <h2><a id="user-content-用户模块" class="anchor" aria-hidden="true" href="#用户模块"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>用户模块</h2>
+        <h3><a id="user-content-register" class="anchor" aria-hidden="true" href="#register"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>register</h3>
+        <ul>
+            <li>接口名称
+                注册接口</li>
+            <li>接口地址
+                /user/register</li>
+            <li>请求方式
+                POST</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                username|是|用户名
+                password|是|用户密码
+                mobile|是|用户手机号
+                vCode|是|验证码</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{<span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>zhoushugang<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>password<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>123456<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>mobile<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>15111111111<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>vCode<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>DS7F<span class="pl-pds">"</span></span>}</pre></div>
+        <ul>
+            <li>返回说明
+                参数|说明
+                --|--
+                success|注册成功
+                error|操作失败</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{<span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>}
+{ <span class="pl-s"><span class="pl-pds">"</span>error<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">401</span>, <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>验证码错误!<span class="pl-pds">"</span></span> }
+{ <span class="pl-s"><span class="pl-pds">"</span>error<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">403</span>, <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>用户名未填写！<span class="pl-pds">"</span></span> }
+{ <span class="pl-s"><span class="pl-pds">"</span>error<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">403</span>, <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>密码未填写！<span class="pl-pds">"</span></span> }
+{ <span class="pl-s"><span class="pl-pds">"</span>error<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">403</span>, <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>用户名已经存在!!!<span class="pl-pds">"</span></span> }
+{ <span class="pl-s"><span class="pl-pds">"</span>error<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">403</span>, <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>手机号已注册过!!!<span class="pl-pds">"</span></span> }
+{ <span class="pl-s"><span class="pl-pds">"</span>error<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">403</span>, <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>数据库异常！<span class="pl-pds">"</span></span> }</pre></div>
+        <h3><a id="user-content-login" class="anchor" aria-hidden="true" href="#login"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>login</h3>
+        <ul>
+            <li>接口名称
+                登录接口</li>
+            <li>接口地址
+                /user/login</li>
+            <li>请求方式
+                POST</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                username|是|用户名
+                password|是|用户密码</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{<span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>zhoushugang<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>password<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>123456<span class="pl-pds">"</span></span>}</pre></div>
+        <ul>
+            <li>返回说明
+                参数|说明
+                --|--
+                success|注册状态
+                error|操作失败</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre><span class="pl-c"><span class="pl-c">//</span>success</span>
+{<span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>}
+<span class="pl-c"><span class="pl-c">//</span>error 同上个接口</span></pre></div>
+        <h3><a id="user-content-logout" class="anchor" aria-hidden="true" href="#logout"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>logout</h3>
+        <ul>
+            <li>接口名称
+                登出接口</li>
+            <li>接口地址
+                /user/logout</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明
+                无</li>
+            <li>返回说明
+                参数|说明
+                --|--
+                success|注册状态
+                error|操作失败</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre><span class="pl-c"><span class="pl-c">//</span>success</span>
+{<span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>}
+<span class="pl-c"><span class="pl-c">//</span>error 同上个接口</span></pre></div>
+        <h3><a id="user-content-update-password" class="anchor" aria-hidden="true" href="#update-password"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>update-password</h3>
+        <ul>
+            <li>接口名称
+                修改密码 （需要登录）</li>
+            <li>接口地址
+                /user/updatePassword</li>
+            <li>请求方式
+                POST</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                oldPassword|是|用户密码
+                newPassword|是|用户密码</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{<span class="pl-s"><span class="pl-pds">"</span>oldPassword<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>123456<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>newPassword<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>456789<span class="pl-pds">"</span></span>}</pre></div>
+        <ul>
+            <li>返回说明
+                参数|说明
+                --|--
+                success|注册状态
+                error|操作失败</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre><span class="pl-c"><span class="pl-c">//</span>success</span>
+{<span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>}
+<span class="pl-c"><span class="pl-c">//</span>error 同上个接口</span></pre></div>
+        <h3><a id="user-content-query-user-message" class="anchor" aria-hidden="true" href="#query-user-message"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>query-user-message</h3>
+        <ul>
+            <li>接口名称
+                查询个人信息 （需要登录）</li>
+            <li>接口地址
+                /user/queryUserMessage</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明</li>
+            <li>返回说明
+                参数|说明
+                --|--
+                success|注册状态
+                error|操作失败</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre><span class="pl-c"><span class="pl-c">//</span>success</span>
+{id<span class="pl-k">:</span> <span class="pl-c1">6</span>, username<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>zhoushugang<span class="pl-pds">"</span></span>, password<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>4QrcOUm6Wau+VuBX8g+IPg==<span class="pl-pds">"</span></span>, mobile<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>15111311111<span class="pl-pds">"</span></span>, isDelete<span class="pl-k">:</span> <span class="pl-c1">1</span>}
+<span class="pl-c"><span class="pl-c">//</span>error 同上个接口</span></pre></div>
+        <h3><a id="user-content-v-code" class="anchor" aria-hidden="true" href="#v-code"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>v-code</h3>
+        <ul>
+            <li>接口名称
+                获取注册验证码 （需要登录）</li>
+            <li>接口地址
+                /user/vCode</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明</li>
+            <li>返回说明
+                参数|说明
+                --|--
+                success|注册状态
+                error|操作失败</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre><span class="pl-c"><span class="pl-c">//</span>success</span>
+{<span class="pl-s"><span class="pl-pds">"</span>vCode<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>938004<span class="pl-pds">"</span></span>}
+<span class="pl-c"><span class="pl-c">//</span>error 同上个接口</span></pre></div>
+        <h3><a id="user-content-v-code-for-update-password" class="anchor" aria-hidden="true" href="#v-code-for-update-password"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>v-code-for-update-password</h3>
+        <ul>
+            <li>接口名称
+                获取修改密码验证码 （需要登录）</li>
+            <li>接口地址
+                /user/vCodeForUpdatePassword</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明</li>
+            <li>返回说明
+                参数|说明
+                --|--
+                success|注册状态
+                error|操作失败</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre><span class="pl-c"><span class="pl-c">//</span>success</span>
+{<span class="pl-s"><span class="pl-pds">"</span>vCode<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>938004<span class="pl-pds">"</span></span>}
+<span class="pl-c"><span class="pl-c">//</span>error 同上个接口</span></pre></div>
+        <h3><a id="user-content-产品模块" class="anchor" aria-hidden="true" href="#产品模块"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>产品模块</h3>
+        <h3><a id="user-content-query-product" class="anchor" aria-hidden="true" href="#query-product"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>query-product</h3>
+        <ul>
+            <li>接口名称
+                搜索产品</li>
+            <li>接口地址
+                /product/queryProduct</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                proName |否|产品名称
+                brandId |否|品牌id
+                price   |否|使用价格排序（1升序，2降序）
+                num     |否|产品库存排序（1升序，2降序）
+                page    |是|第几页
+                pageSize|是|每页的条数</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre> {
+  page<span class="pl-k">:</span> <span class="pl-c1">1</span>,
+  size<span class="pl-k">:</span> <span class="pl-c1">10</span>,
+  data<span class="pl-k">:</span>
+   [  { id<span class="pl-k">:</span> <span class="pl-c1">20</span>, proName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>篮球鞋222<span class="pl-pds">'</span></span>, price<span class="pl-k">:</span> <span class="pl-c1">499.1</span>, num<span class="pl-k">:</span> <span class="pl-c1">20</span> },
+      { id<span class="pl-k">:</span> <span class="pl-c1">21</span>, proName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>篮球鞋222<span class="pl-pds">'</span></span>, price<span class="pl-k">:</span> <span class="pl-c1">499.1</span>, num<span class="pl-k">:</span> <span class="pl-c1">20</span> },
+      { id<span class="pl-k">:</span> <span class="pl-c1">22</span>, proName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>篮球鞋222<span class="pl-pds">'</span></span>, price<span class="pl-k">:</span> <span class="pl-c1">499.1</span>, num<span class="pl-k">:</span> <span class="pl-c1">20</span> },
+      { id<span class="pl-k">:</span> <span class="pl-c1">23</span>, proName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>篮球鞋222<span class="pl-pds">'</span></span>, price<span class="pl-k">:</span> <span class="pl-c1">499.1</span>, num<span class="pl-k">:</span> <span class="pl-c1">20</span>,
+        pic<span class="pl-k">:</span> [{
+          id<span class="pl-k">:</span> <span class="pl-c1">28</span>,
+          picName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>23-2.png<span class="pl-pds">'</span></span>,
+          productId<span class="pl-k">:</span> <span class="pl-c1">23</span>,
+          picAddr<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>product/23-2.png<span class="pl-pds">'</span></span> },{
+          id<span class="pl-k">:</span> <span class="pl-c1">27</span>,
+          picName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>23-1.png<span class="pl-pds">'</span></span>,
+          productId<span class="pl-k">:</span> <span class="pl-c1">23</span>,
+          picAddr<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>product/23-1.png<span class="pl-pds">'</span></span> } ] },
+      { id<span class="pl-k">:</span> <span class="pl-c1">24</span>, proName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>篮球鞋<span class="pl-pds">'</span></span>, price<span class="pl-k">:</span> <span class="pl-c1">4969.1</span>, num<span class="pl-k">:</span> <span class="pl-c1">22</span>,
+        pic<span class="pl-k">:</span> [{
+          id<span class="pl-k">:</span> <span class="pl-c1">26</span>,
+          picName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>24-1.png<span class="pl-pds">'</span></span>,
+          productId<span class="pl-k">:</span> <span class="pl-c1">24</span>,
+          picAddr<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>product/24-1.png<span class="pl-pds">'</span></span> }] } ],
+  count<span class="pl-k">:</span> <span class="pl-c1">5</span> }</pre></div>
+        <h3><a id="user-content-query-product-detail" class="anchor" aria-hidden="true" href="#query-product-detail"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>query-product-detail</h3>
+        <ul>
+            <li>接口名称
+                产品详情</li>
+            <li>接口地址
+                /product/queryProductDetail</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                id |是|产品id</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>proName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>羽绒服<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>oldPrice<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">998</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>price<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">600</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>pic<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>/pic/1.jpg<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>proDesc<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">null</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>size<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>170-195<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>statu<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>updateTime<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>2012-12-01T04:05:23.000Z<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>num<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>brandId<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>
+}</pre></div>
+        <h3><a id="user-content-分类模块" class="anchor" aria-hidden="true" href="#分类模块"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>分类模块</h3>
+        <h3><a id="user-content-query-top-category" class="anchor" aria-hidden="true" href="#query-top-category"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>query-top-category</h3>
+        <ul>
+            <li>接口名称
+                一级分类查询</li>
+            <li>接口地址
+                /category/queryTopCategory</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>[
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>女装<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>男装<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">3</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>家电<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">4</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>家具<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">5</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>箱包<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">6</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>珠宝<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>
+  }
+]</pre></div>
+        <h3><a id="user-content-query-second-category" class="anchor" aria-hidden="true" href="#query-second-category"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>query-second-category</h3>
+        <ul>
+            <li>接口名称
+                二级分类查询</li>
+            <li>接口地址
+                /category/querySecondCategory</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                id |是|一级分类id</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>[
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>brandName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>耐克<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryId<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>brandLogo<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>/pic/1.jpg<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>男鞋<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>hot<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">1</span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>brandName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>阿迪<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryId<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>brandLogo<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>/pic/2.jpg<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>男鞋<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>hot<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">1</span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">3</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>brandName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>新百伦<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryId<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>brandLogo<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>/pic/3.jpg<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>男鞋<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>hot<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">1</span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">4</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>brandName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>哥伦比亚<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryId<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>brandLogo<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>/pic/4.jpg<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>男鞋<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>hot<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">1</span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">5</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>brandName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>匡威<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryId<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>brandLogo<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>/pic/5.jpg<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>isDelete<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>categoryName<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>男鞋<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>hot<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">1</span>
+  }
+]</pre></div>
+        <h3><a id="user-content-购物车" class="anchor" aria-hidden="true" href="#购物车"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>购物车</h3>
+        <h3><a id="user-content-add-cart" class="anchor" aria-hidden="true" href="#add-cart"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>add-cart</h3>
+        <ul>
+            <li>接口名称
+                添加购物车 （需要登录）</li>
+            <li>接口地址
+                /cart/addCart</li>
+            <li>请求方式
+                POST</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                productId |是|产品id
+                num|是|产品数量
+                size|是|产品尺码</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{ <span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span> }</pre></div>
+        <h3><a id="user-content-update-cart" class="anchor" aria-hidden="true" href="#update-cart"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>update-cart</h3>
+        <ul>
+            <li>接口名称
+                修改购物车 （需要登录）</li>
+            <li>接口地址
+                /cart/updateCart</li>
+            <li>请求方式
+                POST</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                id|是|购物车数据id
+                size      |是|产品尺码
+                num      |是|产品数量</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{<span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>}</pre></div>
+        <h3><a id="user-content-delete-cart" class="anchor" aria-hidden="true" href="#delete-cart"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>delete-cart</h3>
+        <ul>
+            <li>接口名称
+                删除购物车 （需要登录）</li>
+            <li>接口地址
+                /cart/deleteCart</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                id    |是|购物车id 数组</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span>[<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>]}</pre></div>
+        <ul>
+            <li>返回说明</li>
+        </ul>
+        <table>
+            <thead>
+            <tr>
+                <th>参数</th>
+                <th>说明</th>
+            </tr>
+            </thead>
+        </table>
+        <ul>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{<span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>}</pre></div>
+        <h3><a id="user-content-query-cart-paging" class="anchor" aria-hidden="true" href="#query-cart-paging"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>query-cart-Paging</h3>
+        <ul>
+            <li>接口名称
+                查询购物车带分页 （需要登录）</li>
+            <li>接口地址
+                /cart/queryCartPaging</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                page  |是|页数
+                pageSize  |是|每页条数</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>page<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>size<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>count<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>data<span class="pl-pds">"</span></span><span class="pl-k">:</span>
+   [ {
+       <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+       <span class="pl-s"><span class="pl-pds">"</span>productId<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">23</span>,
+       <span class="pl-s"><span class="pl-pds">"</span>num<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>,
+       <span class="pl-s"><span class="pl-pds">"</span>size<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>1<span class="pl-pds">'</span></span>,
+       <span class="pl-s"><span class="pl-pds">"</span>proName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>羽绒服<span class="pl-pds">'</span></span>,
+       <span class="pl-s"><span class="pl-pds">"</span>price<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">600</span>,
+       <span class="pl-s"><span class="pl-pds">"</span>pic<span class="pl-pds">"</span></span><span class="pl-k">:</span> [{
+  id<span class="pl-k">:</span> <span class="pl-c1">26</span>,
+  picName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>23-1.png<span class="pl-pds">'</span></span>,
+  productId<span class="pl-k">:</span> <span class="pl-c1">23</span>,
+  picAddr<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>product/23-1.png<span class="pl-pds">'</span></span> },{
+  id<span class="pl-k">:</span> <span class="pl-c1">27</span>,
+  picName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>23-1.png<span class="pl-pds">'</span></span>,
+  productId<span class="pl-k">:</span> <span class="pl-c1">23</span>,
+  picAddr<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>product/23-2.png<span class="pl-pds">'</span></span> }]] } ]
+   }</pre></div>
+        <h3><a id="user-content-query-cart" class="anchor" aria-hidden="true" href="#query-cart"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>query-cart</h3>
+        <ul>
+            <li>接口名称
+                查询购物车 （需要登录）</li>
+            <li>接口地址
+                /cart/queryCart</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>   [ {
+       <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>,
+       <span class="pl-s"><span class="pl-pds">"</span>productId<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">23</span>,
+       <span class="pl-s"><span class="pl-pds">"</span>num<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>,
+       <span class="pl-s"><span class="pl-pds">"</span>size<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>1<span class="pl-pds">'</span></span>,
+       <span class="pl-s"><span class="pl-pds">"</span>proName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>羽绒服<span class="pl-pds">'</span></span>,
+       <span class="pl-s"><span class="pl-pds">"</span>price<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">600</span>,
+       <span class="pl-s"><span class="pl-pds">"</span>pic<span class="pl-pds">"</span></span><span class="pl-k">:</span> [{
+  id<span class="pl-k">:</span> <span class="pl-c1">26</span>,
+  picName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>23-1.png<span class="pl-pds">'</span></span>,
+  productId<span class="pl-k">:</span> <span class="pl-c1">23</span>,
+  picAddr<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>product/23-1.png<span class="pl-pds">'</span></span> },{
+  id<span class="pl-k">:</span> <span class="pl-c1">27</span>,
+  picName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>23-1.png<span class="pl-pds">'</span></span>,
+  productId<span class="pl-k">:</span> <span class="pl-c1">23</span>,
+  picAddr<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>product/23-2.png<span class="pl-pds">'</span></span> }]] } ]
+   </pre></div>
+        <p>###收货地址</p>
+        <h3><a id="user-content-add-address" class="anchor" aria-hidden="true" href="#add-address"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>add-address</h3>
+        <ul>
+            <li>接口名称
+                添加收货地址 （需要登录）</li>
+            <li>接口地址
+                /address/addAddress</li>
+            <li>请求方式
+                POST</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                address  三级联动地址
+                addressDetail  详细地址
+                recipients 收货人
+                postcode 邮编</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{<span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>}</pre></div>
+        <h3><a id="user-content-update-address" class="anchor" aria-hidden="true" href="#update-address"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>update-address</h3>
+        <ul>
+            <li>接口名称
+                修改收货地址 （需要登录）</li>
+            <li>接口地址
+                /address/updateAddress</li>
+            <li>请求方式
+                POST</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                id  字段id
+                address  三级联动地址
+                addressDetail  详细地址
+                recipients 收货人
+                postcode 邮编</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{<span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>}</pre></div>
+        <h3><a id="user-content-delete-address" class="anchor" aria-hidden="true" href="#delete-address"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>delete-address</h3>
+        <ul>
+            <li>接口名称
+                删除收货地址 （需要登录）</li>
+            <li>接口地址
+                /address/deleteAddress</li>
+            <li>请求方式
+                POST</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--
+                id|是|地址id</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>{<span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>}</pre></div>
+        <h3><a id="user-content-query-address" class="anchor" aria-hidden="true" href="#query-address"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>query-address</h3>
+        <ul>
+            <li>接口名称
+                查询用户存储的收货地址 （需要登录）</li>
+            <li>接口地址
+                /address/queryAddress</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>[{
+    id<span class="pl-k">:</span> <span class="pl-c1">1</span>,
+    userId<span class="pl-k">:</span> <span class="pl-c1">2</span>,
+    address<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>北京市海淀区<span class="pl-pds">'</span></span>,
+    addressDetail<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>西三旗建材城西路<span class="pl-pds">'</span></span>,
+    isDelete<span class="pl-k">:</span> <span class="pl-c1">1</span> },
+    {
+    id<span class="pl-k">:</span> <span class="pl-c1">2</span>,
+    userId<span class="pl-k">:</span> <span class="pl-c1">2</span>,
+    address<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>天津市南开区<span class="pl-pds">'</span></span>,
+    addressDetail<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>红旗南路<span class="pl-pds">'</span></span>,
+    isDelete<span class="pl-k">:</span> <span class="pl-c1">1</span>
+}]</pre></div>
+        <h3><a id="user-content-query-address-tree" class="anchor" aria-hidden="true" href="#query-address-tree"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>query-address-tree</h3>
+        <ul>
+            <li>接口名称
+                查询收货地址树 （需要登录）</li>
+            <li>接口地址
+                /address/queryAddressTree</li>
+            <li>请求方式
+                GET</li>
+            <li>参数说明
+                参数名称|是否必须|说明
+                --|--|--</li>
+            <li>返回说明
+                参数|说明
+                --|--</li>
+            <li>示例</li>
+        </ul>
+        <div class="highlight highlight-source-js"><pre>[{
+  <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>北京<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>child<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+   { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">11</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>东城区<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>child<span class="pl-pds">"</span></span><span class="pl-k">:</span> [{ <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">111</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>安定门街道<span class="pl-pds">"</span></span> }, { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">112</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>建国门街道<span class="pl-pds">"</span></span> }] },
+   { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">12</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>西城区<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>child<span class="pl-pds">"</span></span><span class="pl-k">:</span> [{ <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">121</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>德外街道<span class="pl-pds">"</span></span> }, { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">122</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>金融街<span class="pl-pds">"</span></span> }] },
+   { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">13</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>朝阳区<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>child<span class="pl-pds">"</span></span><span class="pl-k">:</span> [{ <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">131</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>朝外街道<span class="pl-pds">"</span></span> }, { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">132</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>劲松街道<span class="pl-pds">"</span></span> }] }]
+  }, {
+   <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">2</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>天津<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>child<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+     { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">21</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>和平区<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>child<span class="pl-pds">"</span></span><span class="pl-k">:</span> [{ <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">211</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>南市街道<span class="pl-pds">"</span></span> }, { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">212</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>新兴街道<span class="pl-pds">"</span></span> }] },
+     { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">22</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>南开区<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>child<span class="pl-pds">"</span></span><span class="pl-k">:</span> [{ <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">221</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>八里台街<span class="pl-pds">"</span></span> }, { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">222</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>王顶堤街<span class="pl-pds">"</span></span> }] },
+     { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">23</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>红桥区<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>child<span class="pl-pds">"</span></span><span class="pl-k">:</span> [{ <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">231</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>西于庄街道<span class="pl-pds">"</span></span> }, { <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">232</span>, <span class="pl-s"><span class="pl-pds">"</span>areaName<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>双环村街道<span class="pl-pds">"</span></span> }] }]
+}]</pre></div>
+    </article>
+</div>
+
+</div>
+
+
+
+<details class="details-reset details-overlay details-overlay-dark">
+    <summary data-hotkey="l" aria-label="Jump to line"></summary>
+    <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast linejump" aria-label="Jump to line">
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-jump-to-line-form Box-body d-flex" action="" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+        <input class="form-control flex-auto mr-3 linejump-input js-jump-to-line-field" type="text" placeholder="Jump to line&hellip;" aria-label="Jump to line" autofocus>
+        <button type="submit" class="btn" data-close-dialog>Go</button>
+    </form>    </details-dialog>
+</details>
+
+
+</div>
+<div class="modal-backdrop js-touch-events"></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+<div class="footer container-lg px-3" role="contentinfo">
+    <div class="position-relative d-flex flex-justify-between pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+        <ul class="list-style-none d-flex flex-wrap ">
+            <li class="mr-3">&copy; 2018 <span title="0.66173s from unicorn-8f8849ddb-zm5wc">GitHub</span>, Inc.</li>
+            <li class="mr-3"><a data-ga-click="Footer, go to terms, text:terms" href="https://github.com/site/terms">Terms</a></li>
+            <li class="mr-3"><a data-ga-click="Footer, go to privacy, text:privacy" href="https://github.com/site/privacy">Privacy</a></li>
+            <li class="mr-3"><a href="/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+            <li class="mr-3"><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+            <li><a data-ga-click="Footer, go to help, text:help" href="https://help.github.com">Help</a></li>
+        </ul>
+
+        <a aria-label="Homepage" title="GitHub" class="footer-octicon mr-lg-4" href="https://github.com">
+            <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        </a>
+        <ul class="list-style-none d-flex flex-wrap ">
+            <li class="mr-3"><a data-ga-click="Footer, go to contact, text:contact" href="https://github.com/contact">Contact GitHub</a></li>
+            <li class="mr-3"><a href="https://github.com/pricing" data-ga-click="Footer, go to Pricing, text:Pricing">Pricing</a></li>
+            <li class="mr-3"><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+            <li class="mr-3"><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+            <li class="mr-3"><a href="https://blog.github.com" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+            <li><a data-ga-click="Footer, go to about, text:about" href="https://github.com/about">About</a></li>
+
+        </ul>
+    </div>
+    <div class="d-flex flex-justify-center pb-6">
+        <span class="f6 text-gray-light"></span>
+    </div>
+</div>
+
+
+
+<div id="ajax-error-message" class="ajax-error-message flash flash-error">
+    <svg class="octicon octicon-alert" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"/></svg>
+    <button type="button" class="flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+        <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/></svg>
+    </button>
+    You can’t perform that action at this time.
+</div>
+
+
+
+<script crossorigin="anonymous" integrity="sha512-092+yG9tBLtacCexwGKGjTtkuRfZo0YUa8VrsiKW+Zh/nyA2j7MvftFLeoIor9CGQ9uDFYNIcbFDbbTPw7tV3Q==" type="application/javascript" src="https://assets-cdn.github.com/assets/frameworks-176ef037f2b2ddbb94c6810c7bce4ec9.js"></script>
+
+<script crossorigin="anonymous" async="async" integrity="sha512-1Q7Ebz9Z7DgGT3k6SxGdGh9qknu6pCoRFuElPmXIGEb3N5iv9d4A1+yXS1Ccquw6OyXLJemfc5HAmtG6zYjgzw==" type="application/javascript" src="https://assets-cdn.github.com/assets/github-2def5cbbebe464dee8b3895e4c146e6a.js"></script>
+
+
+
+<div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner d-none">
+    <svg class="octicon octicon-alert" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"/></svg>
+    <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
+    <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
+</div>
+<div class="facebox" id="facebox" style="display:none;">
+    <div class="facebox-popup">
+        <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+        </div>
+        <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+            <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/></svg>
+        </button>
+    </div>
+</div>
+
+<template id="site-details-dialog">
+    <details class="details-reset details-overlay details-overlay-dark lh-default text-gray-dark" open>
+        <summary aria-haspopup="dialog" aria-label="Close dialog"></summary>
+        <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast">
+            <button class="Box-btn-octicon m-0 btn-octicon position-absolute right-0 top-0" type="button" aria-label="Close dialog" data-close-dialog>
+                <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/></svg>
+            </button>
+            <div class="octocat-spinner my-6 js-details-dialog-spinner"></div>
+        </details-dialog>
+    </details>
+</template>
+
+<div class="Popover js-hovercard-content position-absolute" style="display: none; outline: none;" tabindex="0">
+    <div class="Popover-message Popover-message--bottom-left Popover-message--large Box box-shadow-large" style="width:360px;">
+    </div>
+</div>
+
+<div id="hovercard-aria-description" class="sr-only">
+    Press h to open a hovercard with more details.
+</div>
+
+
+</body>
+</html>
