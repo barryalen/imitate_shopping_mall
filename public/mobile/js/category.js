@@ -55,6 +55,7 @@ $(function () {
 // 解决mui nav下a标签不能跳转问题
     mui('nav').on('tap', 'a', function () {
         document.location.href = this.href;
+        $(this).addClass('mui-active').siblings().removeClass('mui-active')
     });
 // 区域滚动配置
     mui('.mui-scroll-wrapper').scroll({

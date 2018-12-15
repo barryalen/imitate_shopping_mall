@@ -69,7 +69,7 @@ $(function () {
                 }
             })
             var _this = this
-            var time = 59
+            var time = 9
             $(_this).addClass('disable').html(time+'s可重新获取')
             timer = setInterval(function () {
                 time--
